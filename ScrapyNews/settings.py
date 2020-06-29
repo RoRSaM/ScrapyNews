@@ -65,6 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
+    'ScrapyNews.pipelines.ItemAdapterPipeline': 200,
     'ScrapyNews.pipelines.JsonWriterPipeline': 300,
     'ScrapyNews.pipelines.MongoDBWriterPipeline': 400,
 }
