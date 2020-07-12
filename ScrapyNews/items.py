@@ -9,11 +9,10 @@ import scrapy
 
 class TheGuardianItem(scrapy.Item):
 
-	domain = scrapy.Field()
-	subDomain = scrapy.Field()
-	createdBy = scrapy.Field()
-	updatedBy = scrapy.Field()
-	title = scrapy.Field()
+	category = scrapy.Field()
+	date = scrapy.Field()
 	author = scrapy.Field()
-	article = scrapy.Field()
 	link = scrapy.Field()
+	title = scrapy.Field()
+	article = scrapy.Field()
+	

@@ -7,6 +7,9 @@
 import json
 import pymongo
 import re
+import sys
+sys.path.append("..")
+import mydb
 
 class ScrapynewsPipeline:
     def process_item(self, item, spider):
@@ -17,7 +20,7 @@ class ItemAdapterPipeline:
 		if(len(item['title'])>0):
 			item['article'] = self.adapt_article(item['article'])
 			item['title'] = self.adapt_text(item['title'])
-			item['author'] = self.adapt_text(self.adapt_text(item['author']))
+			
 			return item
 			
 	def remove_lines(self, arr):
@@ -48,12 +51,7 @@ class JsonWriterPipeline:
 
 class MongoDBWriterPipeline:
 
-	def __init__(self):
-		self.conn = pymongo.MongoClient("mongodb+srv://scraper:scraper@scrapynews.4kun9.mongodb.net/news?retryWrites=true&w=majority")
-		db = self.conn['news']
-		self.collection = db['TheGuardian']
-	
 	def process_item(self, item, spider):
-		self.collection.insert(dict(item))
+		mydb.collection.insert(dict(item))
 		return item
 			
